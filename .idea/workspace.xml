@@ -37,9 +37,7 @@
     </loaded-modules>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1dedb42b-b76c-43ce-824e-8677dcb5313f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-    </list>
+    <list default="true" id="1dedb42b-b76c-43ce-824e-8677dcb5313f" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
