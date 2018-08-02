@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">EnergyPower</string>
+    <string name="login_text">Введите логин</string>
+    <string name="password_text">Введите пароль</string>
+    <string name="title">Энеросила 52</string>
+    <string name="btnLogin">Войти</string>
+    <string name="cbRemember">Запомнить меня</string>
+    <string name="chose_order">Выберите заказ:</string>
+    <string name="active_order">Выберите активный заказ:</string>
+
+    <string name="order_name">Имя:</string>
+    <string name="manager_name">Менеджер:</string>
+    <string name="address">Адрес:</string>
+    <string name="description">Описание:</string>
+
+    <string name="amount_max_hours">К-во часов в целом:</string>
+    <string name="amount_hours_in_month">Часов в месяце:</string>
+    <string name="amount_left_hours">Остаток по часам:</string>
+    <string name="day_of_month">День месяца:</string>
+    <string name="worker">Ф.И.О. Сотрудника:</string>
+    <string name="work_type">Вид работ:</string>
+    <string name="work_time">Время работы, ч:</string>
+    <string name="overwork_time">Переработка, ч:</string>
+    <string name="add">Добавить</string>
+    <string name="write">Записать</string>
+    <string name="fio">ФИО:</string>
+
+    <string name="work_time_item">Отработано:</string>
+    <string name="over_work_item">Переработка:</string>
+
+    <string name="delete">Удалить</string>
+    <string name="edit">Редактировать</string>
+    <string name="edit_data">Редактирование данных</string>
+
+    <string name="performers">Исполнитель:</string>
+
+    <string name="approve_all">Утвердить\nвсе</string>
+    <string name="approve_selected">Утвердить\nвыбранное</string>
+</resources>
