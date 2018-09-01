@@ -306,6 +306,7 @@ public class WorkList extends AppCompatActivity {
                 txtLeftHours.setText(String.valueOf(leftHours));
                 txtHoursMonth.setText(String.valueOf(hoursArray[HOURS_IN_QUOT]));
 
+                Log.e(TAG, "ID часов на месец: " + String.valueOf(hoursArray[HOURS_ON_MONTH_ID]));
                 new GetWorkToApprove().execute(hoursOnMonthID);
             }
         }

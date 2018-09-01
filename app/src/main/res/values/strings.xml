@@ -19,8 +19,9 @@
     <string name="day_of_month">День месяца:</string>
     <string name="worker">Ф.И.О. Сотрудника:</string>
     <string name="work_type">Вид работ:</string>
-    <string name="work_time">Время работы, ч:</string>
-    <string name="overwork_time">Переработка, ч:</string>
+    <string name="work_progress">Прогресс выполнения на, %:</string>
+    <string name="work_time">Время работы основное, ч:</string>
+    <string name="overwork_time">Время переработки, ч:</string>
     <string name="add">Добавить</string>
     <string name="write">Записать</string>
     <string name="fio">ФИО:</string>
