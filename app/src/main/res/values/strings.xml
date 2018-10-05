@@ -8,7 +8,7 @@
     <string name="chose_order">Выберите заказ:</string>
     <string name="active_order">Выберите активный заказ:</string>
 
-    <string name="order_name">Имя:</string>
+    <string name="order_name">Номер:</string>
     <string name="manager_name">Менеджер:</string>
     <string name="address">Адрес:</string>
     <string name="description">Описание:</string>
@@ -37,4 +37,6 @@
 
     <string name="approve_all">Утвердить\nвсе</string>
     <string name="approve_selected">Утвердить\nвыбранное</string>
+
+
 </resources>

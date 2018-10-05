@@ -48,6 +48,7 @@ public class WorkMaster extends AppCompatActivity {
     private Spinner sprNumDay;
     private Spinner sprWorker;
     private Spinner sprWorkType;
+    private Spinner sprProgress;
 
     private TextView txtWork;
     private TextView txtNumWork;
@@ -67,6 +68,8 @@ public class WorkMaster extends AppCompatActivity {
     private final String KEY_NUM_DAY = "num_day";
     private final String KEY_WORK_TIME = "work_time";
     private final String KEY_OVER_WORK = "over_work";
+    private final String KEY_PROGRESS = "progress";
+    private final String KEY_ORDER_ID = "order_id";
 
     private final int HOURS_IN_QUOT = 0;
     private final int SUM_WORKING_HOURS = 1;
@@ -100,6 +103,7 @@ public class WorkMaster extends AppCompatActivity {
         sprNumDay = findViewById(R.id.sprNumDay);
         sprWorker = findViewById(R.id.sprWorker);
         sprWorkType = findViewById(R.id.sprWorkType);
+        sprProgress = findViewById(R.id.sprProgress);
 
         txtWork = findViewById(R.id.txtWork);
         txtNumWork = findViewById(R.id.txtNumWork);
@@ -136,6 +140,18 @@ public class WorkMaster extends AppCompatActivity {
         sprNumDay.setSelection(sprAdapter.getCount() - 1);
 
         //----------------------------------------------------------------------------------------------------------------
+        // progress spinner
+        List<Integer> numProgress = new ArrayList<>();
+        numProgress.add(1);
+        numProgress.add(3);
+        numProgress.add(6);
+
+        ArrayAdapter<Integer> sprProgressAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, numProgress);
+        sprProgressAdapter.setDropDownViewResource(R.layout.spinner_item);
+        sprProgress.setAdapter(sprProgressAdapter);
+        sprProgress.setSelection(0);
+
+        //----------------------------------------------------------------------------------------------------------------
         if(User.isMaster()) {
             new GetWorkersForMaster().execute();
         }else{
@@ -168,8 +184,8 @@ public class WorkMaster extends AppCompatActivity {
         //----------------------------------------------------------------------------------------------------------------
 
         adapter = new SimpleAdapter(WorkMaster.this, listWork,
-                R.layout.work_time_item, new String[]{KEY_EMPLOYEE, KEY_WORK_TYPE, KEY_NUM_DAY, KEY_WORK_TIME, KEY_OVER_WORK},
-                new int[]{R.id.txtItemEmployee, R.id.txtItemWorkType, R.id.txtItemNumDay, R.id.txtItemWorkTime, R.id.txtItemOverWork});
+                R.layout.work_time_item, new String[]{KEY_EMPLOYEE, KEY_WORK_TYPE, KEY_NUM_DAY, KEY_WORK_TIME, KEY_OVER_WORK, KEY_PROGRESS},
+                new int[]{R.id.txtItemEmployee, R.id.txtItemWorkType, R.id.txtItemNumDay, R.id.txtItemWorkTime, R.id.txtItemOverWork, R.id.txtProgress});
         lvWork.setAdapter(adapter);
 
         //----------------------------------------------------------------------------------------------------------------
@@ -179,12 +195,14 @@ public class WorkMaster extends AppCompatActivity {
 
                 Employee employee = (Employee) sprWorker.getSelectedItem();
                 WorkType workType = (WorkType) sprWorkType.getSelectedItem();
+                Integer progress = (Integer) sprProgress.getSelectedItem();
 
                 if(employee != null && workType != null) {
 
                     int day = (int) sprNumDay.getSelectedItem();
                     int workTime = Integer.valueOf(txtNumWork.getText().toString());
                     int overWork = Integer.valueOf(txtNumOverWork.getText().toString());
+                    int intProgress = progress;
 
                     for (HashMap<String, Object> hm : listWork) {
                         Employee employeeElement = ((Employee) hm.get(KEY_EMPLOYEE));
@@ -202,6 +220,8 @@ public class WorkMaster extends AppCompatActivity {
                             hm.put(KEY_WORK_TYPE, workType);
                             hm.put(KEY_WORK_TIME, workTime);
                             hm.put(KEY_OVER_WORK, overWork);
+                            hm.put(KEY_PROGRESS, intProgress);
+                            hm.put(KEY_ORDER_ID, orderID);
                             txtLeftHours.setText(String.valueOf(leftHours));
                             ((BaseAdapter) adapter).notifyDataSetChanged();
                             Toast.makeText(WorkMaster.this, "запись обновлена", Toast.LENGTH_SHORT).show();
@@ -222,6 +242,8 @@ public class WorkMaster extends AppCompatActivity {
                     hashMapWork.put(KEY_NUM_DAY, day);
                     hashMapWork.put(KEY_WORK_TIME, workTime);
                     hashMapWork.put(KEY_OVER_WORK, overWork);
+                    hashMapWork.put(KEY_PROGRESS, intProgress);
+                    hashMapWork.put(KEY_ORDER_ID, orderID);
 
                     listWork.add(hashMapWork);
                     txtLeftHours.setText(String.valueOf(leftHours));
@@ -548,7 +570,6 @@ public class WorkMaster extends AppCompatActivity {
 
                     JSONObject jsonObject = new JSONObject();
                     HashMap<String, Object> element = listWork.get(i);
-
                     try {
                         jsonObject.put(Const.WORK_TIME_HOURS_MONTH_ID, Integer.valueOf(hoursPerMonthID));
                         jsonObject.put(Const.WORK_TIME_EMPLOYEE_ID, ((Employee) element.get(KEY_EMPLOYEE)).getID());
@@ -556,6 +577,8 @@ public class WorkMaster extends AppCompatActivity {
                         jsonObject.put(Const.WORK_TIME_NUM_DAY, element.get(KEY_NUM_DAY));
                         jsonObject.put(Const.WORK_TIME_WORK_TIME, element.get(KEY_WORK_TIME));
                         jsonObject.put(Const.WORK_TIME_OVER_TIME, element.get(KEY_OVER_WORK));
+                        jsonObject.put(Const.ORDER_HAS_WORKTYPE_PROGRESS, element.get(KEY_PROGRESS));
+                        jsonObject.put(Const.ORDER_ID, element.get(KEY_ORDER_ID));
                         jsonArray.put(jsonObject);
 
                         arrayToSend.put("work", jsonArray);
