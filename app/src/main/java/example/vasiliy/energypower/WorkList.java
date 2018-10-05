@@ -108,6 +108,7 @@ public class WorkList extends AppCompatActivity {
                 EmployeeWithPosition select = (EmployeeWithPosition) adapterView.getItemAtPosition(i);
                 String strID = String.valueOf(select.getEmployee().getID());
                 new GetHoursForPerformer().execute(strID,String.valueOf(ServerDate.getNumMonth()));
+
             }
 
             @Override
@@ -309,6 +310,7 @@ public class WorkList extends AppCompatActivity {
                 Log.e(TAG, "ID часов на месец: " + String.valueOf(hoursArray[HOURS_ON_MONTH_ID]));
                 new GetWorkToApprove().execute(hoursOnMonthID);
             }
+
         }
     }
 
@@ -331,17 +333,23 @@ public class WorkList extends AppCompatActivity {
             JsonParsing jsonPars = new JsonParsing();
 
             if (jsonStr != null) {
-                workList = jsonPars.getWorkToApprove(jsonStr);
 
-                if(workList == null){
+                ArrayList<WR_Table> list = jsonPars.getWorkToApprove(jsonStr);
+
+                if(list == null){
+
+                    if(workList != null) workList.clear();
+
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             Toast.makeText(getApplicationContext(),
-                                    "Ошибка преобразования данных!",
+                                    "Нет данных!",
                                     Toast.LENGTH_LONG).show();
                         }
                     });
+                }else{
+                    workList = list;
                 }
 
             }else{
@@ -365,6 +373,8 @@ public class WorkList extends AppCompatActivity {
                 adapter = new AdapterWorkToApprove(workList,WorkList.this);
                 lvWorkToApprove.setAdapter(adapter);
             }
+
+
         }
     }
 
