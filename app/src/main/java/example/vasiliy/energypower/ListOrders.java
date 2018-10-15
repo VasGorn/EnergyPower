@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -27,6 +28,7 @@ import example.vasiliy.energypower.model.User;
 public class ListOrders extends AppCompatActivity {
     private String TAG = ListOrders.class.getSimpleName();
     private ListView lv;
+    private Button btnBack;
 
     private final String URL_ORDERS_FOR_MASTER = Const.URL_SERVER + "/master/get_orders_for_master.php";
     private final String URL_ORDERS_FOR_MANAGER = Const.URL_SERVER + "/manager/get_active_orders_for_manager.php";
@@ -42,6 +44,7 @@ public class ListOrders extends AppCompatActivity {
 
         orderList = new ArrayList<HashMap<String, String>>();
         lv = (ListView) findViewById(R.id.orderList);
+        btnBack = findViewById(R.id.btnListBack);
 
         if(User.isMaster()) {
             new GetOrders().execute();
@@ -69,12 +72,19 @@ public class ListOrders extends AppCompatActivity {
                 }else{
                     HashMap<String, String> map = orderList.get(position);
 
-                    Intent intent = new Intent(ListOrders.this, WorkList.class);
+                    Intent intent = new Intent(ListOrders.this, WorkManager.class);
                     intent.putExtra(Const.ORDER_ID, map.get(Const.ORDER_ID));
                     intent.putExtra(Const.ORDER_NAME, map.get(Const.ORDER_NAME));
                     startActivity(intent);
                 }
 
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

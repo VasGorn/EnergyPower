@@ -37,6 +37,23 @@ public class JsonParsing {
 
     }
 
+    public int getTypeHoursOnForMaster(String jsonStr){
+        int sumWorkingHours = 0;
+        try {
+            JSONObject jsonObj = new JSONObject(jsonStr);
+            int success = jsonObj.getInt("success");
+
+            if(success == 1) {
+                sumWorkingHours = jsonObj.getInt("sumTypeHours");
+            }
+        } catch (final JSONException e) {
+            e.printStackTrace();
+        }finally {
+            return sumWorkingHours;
+        }
+
+    }
+
     public int[] getHoursOnOrder(String jsonStr){
         int[] hoursArray = null;
         try {
@@ -117,7 +134,7 @@ public class JsonParsing {
                     int wtID = o.getInt(Const.WORK_TYPE_ID);
                     String wtName = o.getString(Const.WORK_TYPE_NAME);
 
-                    WorkType workType = new WorkType(wtID, wtName);
+                    WorkType workType = new WorkType(wtID, wtName, 0);
 
                     int numMonth = o.getInt(Const.HOUR_PER_MONTH_QUOT_NUM_MONTH);
                     int numDay = o.getInt(Const.WORK_TIME_NUM_DAY);
@@ -174,8 +191,8 @@ public class JsonParsing {
         return null;
     }
 
-    public List<WorkType> getWorkTypeForOrder(String jsonStr){
-        List<WorkType> workTypeList;
+    public ArrayList<WorkType> getWorkTypeForOrder(String jsonStr){
+        ArrayList<WorkType> workTypeList;
 
         try {
             JSONObject jsonObj = new JSONObject(jsonStr);
@@ -188,10 +205,11 @@ public class JsonParsing {
 
                 for (int i = 0; i < work_type.length(); i++) {
                     JSONObject o = work_type.getJSONObject(i);
-                    String id = o.getString(Const.WORK_TYPE_ID);
+                    int id = o.getInt(Const.WORK_TYPE_ID);
                     String workTypeName = o.getString(Const.WORK_TYPE_NAME);
+                    int hours = o.getInt(Const.ORDER_HAS_WORKTYPE_HOURS);
 
-                    WorkType newWorkType = new WorkType(Integer.valueOf(id), workTypeName);
+                    WorkType newWorkType = new WorkType(id, workTypeName, hours);
 
                     workTypeList.add(newWorkType);
                 }

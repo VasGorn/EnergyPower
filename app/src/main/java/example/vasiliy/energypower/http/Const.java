@@ -51,9 +51,10 @@ public class Const {
     public static final String WORK_TYPE_NAME = "type_name";
 
     public static final String ORDER_HAS_WORKTYPE_TABLE = "order_has_work_type";
-    public static final String ORDER_HAS_WORKTYPE_ORDER_ID = "order_order_id";
+    public static final String ORDER_HAS_WORKTYPE_MONTH_ID = "hour_per_month_id";
     public static final String ORDER_HAS_WORKTYPE_TYPE_ID = "work_type_type_id";
-    public static final String ORDER_HAS_WORKTYPE_PROGRESS = "progress";
+    public static final String ORDER_HAS_WORKTYPE_HOURS = "hours_on_type";
+
 
     public static final String WORK_TIME_TABLE = "work_time";
     public static final String WORK_TIME_ID = "id";

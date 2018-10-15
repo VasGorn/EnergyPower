@@ -171,6 +171,39 @@ public class HttpHandler {
         return response;
     }
 
+
+    public String getTypeHoursOnOrder(String reqUrl, String hoursPerMonthID, String workTypeID){
+        String response = null;
+        try {
+            URL url = new URL(reqUrl);
+            String param = "hoursPerMonthID=" + URLEncoder.encode(hoursPerMonthID,"UTF-8")+
+                    "&workTypeID=" + URLEncoder.encode(workTypeID,"UTF-8");
+
+            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+            conn.setDoOutput(true);
+
+            conn.setRequestMethod("POST");
+            conn.setFixedLengthStreamingMode(param.getBytes().length);
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+
+            PrintWriter out = new PrintWriter(conn.getOutputStream());
+            out.print(param);
+            out.close();
+
+            // read the response
+            InputStream in = new BufferedInputStream(conn.getInputStream());
+            response = convertStreamToString(in);
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
     public String getHoursForPerformer(String reqUrl, String orderID, String employeeID, String numMonth){
         String response = null;
         try {
@@ -297,11 +330,11 @@ public class HttpHandler {
         return response;
     }
 
-    public String getWorkTypeForOrder(String reqUrl, String orderID){
+    public String getWorkTypeForOrder(String reqUrl, String hoursPerMonthID){
         String response = null;
         try {
             URL url = new URL(reqUrl);
-            String param = "orderID=" + URLEncoder.encode(orderID,"UTF-8");
+            String param = "hoursPerMonthID=" + URLEncoder.encode(hoursPerMonthID,"UTF-8");
 
             HttpURLConnection conn = (HttpURLConnection)url.openConnection();
             conn.setDoOutput(true);

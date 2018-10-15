@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +18,16 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import example.vasiliy.energypower.R;
+import example.vasiliy.energypower.WorkManager;
 import example.vasiliy.energypower.model.WR_Table;
+
+import static android.support.constraint.Constraints.TAG;
 
 public class AdapterWorkToApprove extends ArrayAdapter<WR_Table> implements View.OnCreateContextMenuListener{
     private ArrayList<WR_Table> data;
     private Context mContext;
+
+    private final String TAG = WorkManager.class.getSimpleName();
 
     private static class ViewHolder{
         TextView txtEmployee;
@@ -79,6 +85,7 @@ public class AdapterWorkToApprove extends ArrayAdapter<WR_Table> implements View
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                     WR_Table element = (WR_Table)viewHolder.cbApprove.getTag();
                     element.setSelected(compoundButton.isChecked());
+                    Log.e(TAG, "нажато" + element.getEmployee() + " " + element.getNumDay() + " " + element.isSelected());
                 }
             });
             v.setTag(viewHolder);

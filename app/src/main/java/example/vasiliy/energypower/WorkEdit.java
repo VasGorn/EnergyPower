@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,11 +39,14 @@ public class WorkEdit extends AppCompatActivity {
     private TextView txtOverWork;
     private TextView txtNumOverWork;
     private Button btnWrite;
+    private Button btnEditBack;
 
     private List<WorkType> workTypeList;
     private WorkType workTypeOld;
     private String orderID;
     private int numPosition;
+
+    private int hoursPerMonthID;
 
     private final String URL_WORK_TYPE_FOR_ORDER = Const.URL_SERVER +"/master/get_work_type_on_order.php";
 
@@ -61,10 +65,14 @@ public class WorkEdit extends AppCompatActivity {
         txtWorkTime = findViewById(R.id.txtEditWork);
         txtOverWork = findViewById(R.id.txtEditOverWork);
         btnWrite = findViewById(R.id.btnEditWrite);
+        btnEditBack = findViewById(R.id.btnEditBack);
 
         Intent intent = getIntent();
         numPosition = intent.getIntExtra("itemPosition",0);
+
         orderID = intent.getStringExtra("orderID");
+        hoursPerMonthID = intent.getIntExtra("hoursPerMonthID",0);
+
         String numDay = intent.getStringExtra("numDay");
         Employee employee = (Employee) intent.getSerializableExtra("employee");
         workTypeOld = (WorkType) intent.getSerializableExtra("workType") ;
@@ -108,11 +116,20 @@ public class WorkEdit extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnEditBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     // arguments isWorkOrOverWork: 0 - for usual work time, 1 - for extra work time
     private void numPickDialog(final int numMax, final int isWorkOrOverWork){
-        final NumberPicker numPick = new NumberPicker(this);
+        ContextThemeWrapper cw = new ContextThemeWrapper(this, R.style.NumberPickerText);
+        final NumberPicker numPick = new NumberPicker(cw);
+        //final NumberPicker numPick = new NumberPicker(this);
         numPick.setMaxValue(numMax);
         numPick.setMinValue(0);
         AlertDialog.Builder dialog = new AlertDialog.Builder(this).setView(numPick);
@@ -149,7 +166,8 @@ public class WorkEdit extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
             HttpHandler sh = new HttpHandler();
 
-            String jsonStr = sh.getWorkTypeForOrder(URL_WORK_TYPE_FOR_ORDER, orderID);
+            String jsonStr = sh.getWorkTypeForOrder(URL_WORK_TYPE_FOR_ORDER,
+                    String.valueOf(hoursPerMonthID));
 
             Log.e(TAG, "Response from url: " + jsonStr);
 

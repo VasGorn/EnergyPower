@@ -36,6 +36,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="0"
                 android:text="@string/performers"
                 android:textColor="@color/colorBlack"
                 android:textSize="16sp" />
@@ -44,6 +45,7 @@
                 android:id="@+id/sprPerformers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:paddingRight="10dp"
                 android:paddingLeft="10dp"/>
         </LinearLayout>
@@ -59,6 +61,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.5"
                 android:orientation="horizontal">
 
                 <TextView
@@ -66,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/amount_left_hours"
                     android:textColor="@color/colorBlack"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/txtLeftHours"
@@ -76,13 +79,15 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:textColor="@color/colorBlack"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="end"
                 android:orientation="horizontal">
 
                 <TextView
@@ -90,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/amount_hours_in_month"
                     android:textColor="@color/colorBlack"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/txtHoursMonth"
@@ -100,7 +105,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:textColor="@color/colorBlack"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -114,7 +119,7 @@
 
 
             <Button
-                android:id="@+id/btnApproveAll"
+                android:id="@+id/btnApprove"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -123,12 +128,21 @@
                 android:textSize="16sp" />
 
             <Button
-                android:id="@+id/btnApproveSel"
+                android:id="@+id/btnSelectAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text="@string/approve_selected"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnManagerBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/back"
                 android:textSize="16sp" />
         </LinearLayout>
 

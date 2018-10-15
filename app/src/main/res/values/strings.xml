@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EnergyPower</string>
+    <string name="app_name">Энергосила 52</string>
     <string name="login_text">Введите логин</string>
     <string name="password_text">Введите пароль</string>
     <string name="title">Энеросила 52</string>
@@ -16,14 +16,21 @@
     <string name="amount_max_hours">К-во часов в целом:</string>
     <string name="amount_hours_in_month">Часов в месяце:</string>
     <string name="amount_left_hours">Остаток по часам:</string>
+
+    <string name="type_amount_hours_in_month">Часов на работы:</string>
+    <string name="type_amount_left_hours">Остаток по виду работ:</string>
+
     <string name="day_of_month">День месяца:</string>
     <string name="worker">Ф.И.О. Сотрудника:</string>
     <string name="work_type">Вид работ:</string>
-    <string name="work_progress">Прогресс выполнения на, %:</string>
+    <string name="work_progress">Прогресс выполнения:</string>
+
+    <string name="work_progress_manager">Прогресс работ</string>
     <string name="work_time">Время работы основное, ч:</string>
     <string name="overwork_time">Время переработки, ч:</string>
     <string name="add">Добавить</string>
     <string name="write">Записать</string>
+    <string name="back">Назад</string>
     <string name="fio">ФИО:</string>
 
     <string name="work_time_item">Отработано:</string>
@@ -35,8 +42,10 @@
 
     <string name="performers">Исполнитель:</string>
 
-    <string name="approve_all">Утвердить\nвсе</string>
-    <string name="approve_selected">Утвердить\nвыбранное</string>
+    <string name="all_progress">Общий прогресс\nвыполнения:</string>
+
+    <string name="approve_all">Утвердить</string>
+    <string name="approve_selected">Выбрать\nвсё</string>
 
 
 </resources>
