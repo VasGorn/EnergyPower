@@ -2,7 +2,7 @@
     <string name="app_name">Энергосила 52</string>
     <string name="login_text">Введите логин</string>
     <string name="password_text">Введите пароль</string>
-    <string name="title">Энеросила 52</string>
+    <string name="title">Энергосила 52</string>
     <string name="btnLogin">Войти</string>
     <string name="cbRemember">Запомнить меня</string>
     <string name="chose_order">Выберите заказ:</string>
@@ -18,7 +18,7 @@
     <string name="amount_left_hours">Остаток по часам:</string>
 
     <string name="type_amount_hours_in_month">Часов на работы:</string>
-    <string name="type_amount_left_hours">Остаток по виду работ:</string>
+    <string name="type_amount_left_hours">Остаток по\nвиду работ:</string>
 
     <string name="day_of_month">День месяца:</string>
     <string name="worker">Ф.И.О. Сотрудника:</string>
@@ -46,6 +46,5 @@
 
     <string name="approve_all">Утвердить</string>
     <string name="approve_selected">Выбрать\nвсё</string>
-
 
 </resources>
